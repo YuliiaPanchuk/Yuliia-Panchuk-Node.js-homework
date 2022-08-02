@@ -5,8 +5,8 @@ const path = require('path');
 
 const sendIndexPage = require('./responses/sendIndexPage');
 const sendOtherPage = require('./responses/sendOtherPage');
-const sendStyles    = require('./responses/sendStyles');
-const sendText      = require('./responses/sendText');
+const sendStyles = require('./responses/sendStyles');
+const sendText = require('./responses/sendText');
 
 const PORT = 3000;
 

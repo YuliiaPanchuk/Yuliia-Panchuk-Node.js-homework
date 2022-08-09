@@ -14,7 +14,7 @@ function createServer(port) {
     switch (request.url) {
       case '/': // Default endpoint
         break;
-      case '/state':
+      case '/state':  // Get current value of state
         break;
       case '/add':
         state += 1;

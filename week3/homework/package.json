@@ -6,6 +6,9 @@
   "main": "src/index.js",
   "author": "George Sapkin",
   "license": "MIT",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
   "devDependencies": {
     "eslint": "^4.2.0",
     "eslint-config-standard": "^11.0.0",

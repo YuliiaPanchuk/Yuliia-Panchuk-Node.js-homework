@@ -1,3 +1,3 @@
 module.exports = {
-  fileName: "text.json"
-}
+  fileName: 'text.json'
+};

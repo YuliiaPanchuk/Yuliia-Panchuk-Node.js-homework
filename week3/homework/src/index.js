@@ -1,29 +1,41 @@
 'use strict';
 
-// TODO: Write the homework code in this file
+const Express = require('express');
+
+// import our CRUD actions
+const {
+  createTodo,
+  readTodos,
+  updateTodo,
+  deleteTodo,
+  readTodo,
+  clearTodos,
+  patchTodo
+} = require('./actions');
+
+const Todo = require('./todo');
+
+const FILENAME = 'todos.json';
 const PORT = 3000;
-const express = require("express");
-const app = express();
+const TODO_SLUG = 'todos';
 
-app.post("/todos", (req, res) => {
-  res.send("Creates a new to-do")
-});
+const todo = new Todo(FILENAME);
 
-app.get("/todos", (req, res) => {
-  res.send("Reads and lists all to-dos")
-});
+const app = new Express();
 
-app.put("/todos/:id", (req, res) => {
-  res.send("Updates the description of a to-do with ID")
-});
+// Use built-in JSON middleware to automatically parse JSON
+app.use(Express.json());
 
-app.delete("/todos/:id", (req, res) => {
-  res.send("Deletes a to-do with ID")
-})
+app.post(`/${TODO_SLUG}`, createTodo.bind(null, todo));
+app.get(`/${TODO_SLUG}`, readTodos.bind(null, todo));
+app.put(`/${TODO_SLUG}/:id`, updateTodo.bind(null, todo));
+app.delete(`/${TODO_SLUG}/:id`, deleteTodo.bind(null, todo));
+app.get(`/${TODO_SLUG}/:id`, readTodo.bind(null, todo));
+app.delete(`/${TODO_SLUG}`, clearTodos.bind(null, todo));
+app.patch(`/${TODO_SLUG}/:id`, patchTodo.bind(null, todo));
 
-app.listen(PORT, error => {
-  if (error)
-    return console.error(error);
+app.listen(PORT, (error) => {
+  if (error) return console.error(error);
 
   console.log(`Server started on http://localhost:${PORT}`);
 });
